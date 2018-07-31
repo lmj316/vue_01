@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue2.js"></script>
+</head>
+<body>
+    <!-- {{msg}} -->
+    <div id = 'app'>
+        {{msg}}
+        <p v-text = 'msg'>v-text的使用</p>
+        <p v-html = 'html'>v-html的使用</p>
+        <p :id = 'pId' :class = "pClass" v-bind:list = 'plist'>v-bind的使用</p>
+
+
+        <!-- <p>张三</p>
+        <p>李四</p>
+        <p>王五</p> -->
+        <p v-for = '(item,index) in list' :key = 'index'>{{item}}</p>
+
+
+        <input type="text" v-model = 'username' @keyup.enter = 'keyHandle'>
+
+
+        <button @click = "btnClcik('张三')">按钮</button>
+
+        <a href="http://www.baidu.com" @click.prevent = 'btnClcik(123)'>百度</a>
+
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app', // 是用来设置vue实例的监管区域
+        // 设置vue实例需要用到的数据
+        data:{
+            msg:'我是vue的数据',
+            html:'<span>我是v-html渲染出来的数据</span>',
+            pId:'p',
+            pClass:'pc',
+            plist:'list',
+            list:[
+                '张三',
+                '李四',
+                '王五'
+            ],
+            username:'李白'
+        },
+        // vue中用来定义函数的
+        methods:{
+            // btnClcik:function(){
+            //     console.log('按钮被点击了')
+            // }
+            // 在对象中函数的定义可以简写(省略掉:function)
+            btnClcik(arg){
+                console.log(arg)
+            },
+            keyHandle(){
+                console.log(666)
+            }
+        }
+    })
+</script>
+</html>
